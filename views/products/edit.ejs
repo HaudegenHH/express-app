@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;      
+    }
+    form {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    #cat, #price, #name {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    button {
+      padding: 5px 20px;
+      margin: 20px 0;
+      background-color: #1e4ff0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 200ms;
+    }
+    button:hover {
+      background-color: #1717c0;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">    
+    <h1>Produkt ändern</h1>
+    <form action="/products/<%=product._id%>?_method=PUT" method="POST">
+      <label for="name">Produktname:</label>
+      <input type="text" name="name" id="name" value="<%=product.name%>">
+      <label for="price">Preis:</label>
+      <input type="number" name="price" id="price" value="<%=product.price%>">
+      <label for="cat">Kategorie:</label>
+      <select name="category" id="category">
+        <% for(let category of categories){ %> 
+          <option value="<%=category%>" <%=product.category === category ? 'selected' : '' %>><%=category%></option>
+        <% } %> 
+      </select>      
+      <button type="submit">Ändern</button>
+    </form>
+  </div>
+</body>
+</html>
